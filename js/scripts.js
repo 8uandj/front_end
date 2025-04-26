@@ -9,7 +9,7 @@ if (document.getElementById('login-btn')) {
     const password = passwordInput.value.trim();
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://lms-backend-app-c0f37e359643.herokuapp.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, password }),
@@ -58,27 +58,27 @@ if (mainContent) {
 
   // Lấy thông tin người dùng
   const fetchUser = async () => {
-    return await fetchWithAuth('http://localhost:5000/api/auth/me');
+    return await fetchWithAuth('https://lms-backend-app-c0f37e359643.herokuapp.com/api/auth/me');
   };
 
   // Lấy thông tin tiêm phòng COVID (giả sử có API)
   const fetchVaccinationInfo = async () => {
-    return await fetchWithAuth('http://localhost:5000/api/vaccination');
+    return await fetchWithAuth('https://lms-backend-app-c0f37e359643.herokuapp.com/api/vaccination');
   };
 
   // Lấy hồ sơ cá nhân
   const fetchProfile = async () => {
-    return await fetchWithAuth('http://localhost:5000/api/profile');
+    return await fetchWithAuth('https://lms-backend-app-c0f37e359643.herokuapp.com/api/profile');
   };
 
   // Lấy kết quả học tập
   const fetchStudyResults = async () => {
-    return await fetchWithAuth('http://localhost:5000/api/study-results');
+    return await fetchWithAuth('https://lms-backend-app-c0f37e359643.herokuapp.com/api/study-results');
   };
 
   // Lấy lịch thi
   const fetchExamSchedules = async () => {
-    return await fetchWithAuth('http://localhost:5000/api/exam-schedule');
+    return await fetchWithAuth('https://lms-backend-app-c0f37e359643.herokuapp.com/api/exam-schedule');
   };
 
   // Định nghĩa nội dung các trang cho trang chính (index.html)
@@ -899,7 +899,7 @@ window.saveProfile = async () => {
     }
 
     // Gửi yêu cầu PUT để cập nhật toàn bộ dữ liệu profile
-    const response = await fetch('http://localhost:5000/api/profile', {
+    const response = await fetch('https://lms-backend-app-c0f37e359643.herokuapp.com/api/profile', {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -943,7 +943,7 @@ window.saveVaccinationStatus = async () => {
       return;
     }
 
-    const response = await fetch('http://localhost:5000/api/vaccination', {
+    const response = await fetch('https://lms-backend-app-c0f37e359643.herokuapp.com/api/vaccination', {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -1012,7 +1012,7 @@ window.changePassword = async () => {
       return;
     }
 
-    const response = await fetch('http://localhost:5000/api/auth/change-password', {
+    const response = await fetch('https://lms-backend-app-c0f37e359643.herokuapp.com/api/auth/change-password', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
