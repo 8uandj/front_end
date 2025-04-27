@@ -35,7 +35,8 @@ const mainContent = document.getElementById('main-content');
 if (mainContent) {
   const token = localStorage.getItem('token');
   if (!token) {
-    window.location.href = 'login.html'; // Chuyển hướng nếu chưa đăng nhập
+    window.location.href = 'login.html'; 
+    return; // Chuyển hướng nếu chưa đăng nhập
   }
 
   // Hàm gọi API với token
@@ -55,6 +56,19 @@ if (mainContent) {
     }
     return response.json();
   };
+
+  // Cập nhật thông tin người dùng trong header
+  const updateUserInfo = async () => {
+    try {
+      const user = await fetchUser();
+      document.getElementById('user-name').textContent = user.fullName;
+      document.getElementById('user-id').textContent = user.userId;
+    } catch (err) {
+      console.error('Error updating user info:', err);
+    }
+  };
+  // Gọi hàm cập nhật thông tin người dùng khi trang tải
+  updateUserInfo();
 
   // Lấy thông tin người dùng
   const fetchUser = async () => {
@@ -847,8 +861,10 @@ if (mainContent) {
     });
   });
 
-  // Hiển thị trang mặc định (study-results) khi tải trang
-  const defaultMenuItem = document.querySelector('.sidebar li[data-page="study-results"]');
+  // Hiển thị trang mặc định dựa trên hash
+  const hash = window.location.hash.replace('#', '');
+  const defaultPage = hash && pages[hash] ? hash : 'study-results';
+  const defaultMenuItem = document.querySelector(`.sidebar li[data-page="${defaultPage}"]`);
   if (defaultMenuItem) {
     defaultMenuItem.click();
   }
