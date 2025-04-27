@@ -36,8 +36,7 @@ if (mainContent) {
   const token = localStorage.getItem('token');
   if (!token) {
     window.location.href = 'login.html'; 
-    return; // Chuyển hướng nếu chưa đăng nhập
-  }
+  } else {
 
   // Hàm gọi API với token
   const fetchWithAuth = async (url) => {
@@ -56,6 +55,7 @@ if (mainContent) {
     }
     return response.json();
   };
+}
 
   // Cập nhật thông tin người dùng trong header
   const updateUserInfo = async () => {
